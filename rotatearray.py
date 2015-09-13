@@ -22,9 +22,6 @@ def rotate2(nums, k):
     pivot = k % length
     if length == 0 or pivot == 0:
         return
-    part_1 = nums[:length-pivot]
-    part_2 = nums[length-pivot:]
-    len_1, len_2 = len(part_1), len(part_2)
 
     def switch_array(arr, a_start, a_end, b_start, b_end):
         if a_start > a_end or b_start > b_end or a_end >=len(arr) or b_end >= len(arr):
@@ -47,17 +44,24 @@ def rotate2(nums, k):
     switch_array(nums, 0, length - pivot - 1, length - pivot, length-1)
 
 
+def rotate3(nums, k):
+    length = len(nums)
+    step = k % length
+    end = length - step - 1
+    nums[:] = nums[end+1:] + nums[:end+1] 
+
+
 test1 = [1,2,3,4,5,6,7]
-rotate2(test1, 3)
+rotate3(test1, 3)
 print test1
 
 test1 = [1,2,3,4,5,6,7]
-rotate2(test1, 10)
+rotate3(test1, 10)
 print test1
 
 
 test1 = [1,2,3,4,5,6,7]
-rotate2(test1, 9)
+rotate3(test1, 9)
 print test1
 
 test1 = [45,6,78,9,34,56]
